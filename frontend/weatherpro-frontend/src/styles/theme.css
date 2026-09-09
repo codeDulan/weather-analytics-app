@@ -1,0 +1,194 @@
+:root {
+  --wp-radius: 20px;
+  --wp-blur: 14px;
+  --wp-card-bg: rgba(255, 255, 255, 0.14);
+  --wp-card-border: rgba(255, 255, 255, 0.25);
+  --wp-text: #f5f7fa;
+  --wp-text-muted: rgba(245, 247, 250, 0.72);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--wp-text);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: linear-gradient(180deg, #6aa9d9 0%, #a7c9e6 55%, #dfeaf3 100%);
+  background-attachment: fixed;
+}
+
+.wp-text-muted {
+  color: var(--wp-text-muted);
+}
+
+.wp-glass {
+  background: var(--wp-card-bg);
+  border: 1px solid var(--wp-card-border);
+  border-radius: var(--wp-radius);
+  backdrop-filter: blur(var(--wp-blur));
+  -webkit-backdrop-filter: blur(var(--wp-blur));
+  box-shadow: 0 8px 32px rgba(31, 38, 60, 0.18);
+}
+
+/* City rank list */
+.wp-rank-list {
+  padding: 1.25rem;
+  height: 100%;
+}
+.wp-rank-list__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0 0 1rem;
+}
+.wp-rank-list__rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* City rank row */
+.wp-rank-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.6rem 0.85rem;
+  border: 0;
+  border-radius: 14px;
+  color: inherit;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.08);
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.wp-rank-row:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+.wp-rank-row:active {
+  transform: scale(0.99);
+}
+.wp-rank-row--active {
+  background: rgba(255, 255, 255, 0.3);
+  outline: 1px solid var(--wp-card-border);
+}
+.wp-rank-row__rank {
+  width: 1.5rem;
+  flex-shrink: 0;
+  text-align: center;
+  font-weight: 700;
+  opacity: 0.8;
+}
+.wp-rank-row img {
+  flex-shrink: 0;
+}
+.wp-rank-row__body {
+  flex-grow: 1;
+  min-width: 0;
+}
+.wp-rank-row__name,
+.wp-rank-row__desc {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.wp-rank-row__name {
+  font-weight: 600;
+}
+.wp-rank-row__desc {
+  font-size: 0.85rem;
+  color: var(--wp-text-muted);
+}
+.wp-rank-row__stats {
+  flex-shrink: 0;
+  text-align: right;
+}
+.wp-rank-row__score {
+  display: block;
+  font-weight: 700;
+}
+.wp-rank-row__temp {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--wp-text-muted);
+}
+
+/* City detail card */
+.wp-detail {
+  position: relative;
+  overflow: hidden;
+  padding: 2rem;
+  height: 100%;
+}
+
+.wp-vibe--spring {
+  background-image: linear-gradient(160deg, rgba(150, 210, 130, 0.55), rgba(90, 170, 120, 0.3));
+}
+.wp-vibe--nature {
+  background-image: linear-gradient(160deg, rgba(90, 160, 200, 0.5), rgba(70, 120, 170, 0.28));
+}
+.wp-vibe--desert {
+  background-image: linear-gradient(160deg, rgba(222, 170, 110, 0.55), rgba(192, 132, 90, 0.32));
+}
+
+.wp-detail__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.wp-detail__city {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
+}
+.wp-detail__meta {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+  color: var(--wp-text-muted);
+}
+.wp-detail__score {
+  flex-shrink: 0;
+  text-align: center;
+  line-height: 1.1;
+}
+.wp-detail__score-value {
+  display: block;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+.wp-detail__score-label {
+  font-size: 0.8rem;
+  color: var(--wp-text-muted);
+}
+
+.wp-detail__now {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+.wp-detail__temp {
+  display: block;
+  font-size: 3.25rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.wp-detail__desc {
+  display: block;
+  font-size: 1.15rem;
+}
+
+.wp-detail__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin: 0;
+}
+.wp-detail__grid dt {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--wp-text-muted);
+}
+.wp-detail__grid dd {
+  margin: 0;
+  font-weight: 600;
+}
