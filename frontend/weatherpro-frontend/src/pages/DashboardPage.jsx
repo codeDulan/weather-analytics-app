@@ -4,6 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import CityDetailCard from '../component/CityDetailCard'
 import CityRankList from '../component/CityRankList'
 import { useRankedCities } from '../hooks/useRankedCities'
+import UserMenu from '../auth/UserMenu'
 
 export default function DashboardPage() {
     const { cities, loading, error } = useRankedCities();
@@ -16,6 +17,9 @@ export default function DashboardPage() {
 
     return (
         <Container className="py-4 py-md-5">
+            <div className="d-flex justify-content-end mb-3">
+                <UserMenu />
+            </div>
             <header className="text-center mb-4 mb-md-5">
                 <h1 className="fw-bold display-5">
                     Weather<span className="text-primary">Pro</span>

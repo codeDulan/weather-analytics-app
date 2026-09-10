@@ -1,6 +1,14 @@
 import DashboardPage from './pages/DashboardPage'
-import Dashboard from './pages/DashboardPage'
+import AuthTokenBridge from './auth/AuthTokenBridge'
+import AuthGate from './auth/AuthGate'
 
 export default function App() {
-  return <DashboardPage />
+  return (
+    <>
+      <AuthTokenBridge />
+      <AuthGate>
+        <DashboardPage />
+      </AuthGate>
+    </>
+  )
 }
