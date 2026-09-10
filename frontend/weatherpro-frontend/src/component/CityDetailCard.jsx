@@ -1,4 +1,4 @@
-import { backgroundBucket, formatObservedAt, formatScore, formatTemp, ownIconUrl, titleCase} from '../utils/format'
+import { backgroundBucket, formatObservedAt, formatScore, formatVisibility, formatTemp, ownIconUrl, titleCase} from '../utils/format'
 
 export default function CityDetailsCard({ city, totalCities }) {
     const bucket = backgroundBucket(city.rank, totalCities)
@@ -9,6 +9,7 @@ export default function CityDetailsCard({ city, totalCities }) {
         ['Humidity', `${Math.round(city.humidityPercent)}%`],
         ['Wind', `${city.windSpeedMs.toFixed(1)} m/s`],
         ['Cloudiness', `${Math.round(city.cloudinessPercent)}%`],
+        ['Visibility', formatVisibility(city.visibilityMeters)],
     ]
 
     return (

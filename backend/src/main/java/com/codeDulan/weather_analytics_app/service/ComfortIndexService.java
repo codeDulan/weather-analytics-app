@@ -11,10 +11,12 @@ import java.util.Map;
 public class ComfortIndexService {
 
     // weights
-    static final double WEIGHT_TEMPERATURE = 0.55;
+    static final double WEIGHT_TEMPERATURE = 0.50;
     static final double WEIGHT_HUMIDITY = 0.25;
     static final double WEIGHT_WIND = 0.15;
     static final double WEIGHT_SKY = 0.05;
+    static final double WEIGHT_VISIBILITY = 0.05;
+
 
     // temperature
     static final double IDEAL_FEELS_LIKE_C = 22.0;
@@ -33,21 +35,34 @@ public class ComfortIndexService {
     // sky
     static final double SKY_PENALTY_PER_PERCENT = 0.5;
 
+    // visibilty
+    static final double BEST_VISIBILITY_DISTANCE = 10_000.0;
+
     public ComfortScore score(Weather weather) {
         double temperature = temperatureScore(weather.feelsLikeC());
         double humidity = humidityScore(weather.humidityPercent());
         double wind = windScore(weather.windSpeedMs());
         double sky = skyScore(weather.cloudinessPercent());
+        double visibilty = visbilityScore(weather.visibilityMeters());
 
-        double overall = WEIGHT_TEMPERATURE * temperature + WEIGHT_HUMIDITY * humidity + WEIGHT_WIND * wind + WEIGHT_SKY * sky;
+        double overall = WEIGHT_TEMPERATURE * temperature + WEIGHT_HUMIDITY * humidity + WEIGHT_WIND * wind + WEIGHT_SKY * sky + WEIGHT_VISIBILITY * visibilty;
 
         Map<String, Double> breakdown = new LinkedHashMap<>();
         breakdown.put("temperature", round1(temperature));
         breakdown.put("humidity", round1(humidity));
         breakdown.put("wind", round1(wind));
         breakdown.put("sky", round1(sky));
+        breakdown.put("visibilty", round1(visibilty));
 
         return new ComfortScore(round1(clamp0to100(overall)), breakdown);
+    }
+
+    double visbilityScore(Integer visibiltyMeter) {
+        if (visibiltyMeter == null){
+            return 100;
+        }
+
+        return clamp0to100(100 * visibiltyMeter/BEST_VISIBILITY_DISTANCE);
     }
 
     double temperatureScore(double feelsLikeC){
