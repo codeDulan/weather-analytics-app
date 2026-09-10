@@ -3,6 +3,12 @@ export function formatTemp(celcius) {
     return `${Math.round(celcius)}°C`;
 }
 
+export function formatVisibility(meters) {
+    if (meters == null || Number.isNaN(meters)) return '_';
+    const km = meters / 1000;
+    return `${km.toFixed(1)} km`;
+}
+
 export function formatScore(score) {
     if (score == null || Number.isNaN(score)) return '_';
     return Math.round(score);
